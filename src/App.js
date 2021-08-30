@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { GlobalStyle } from "./GlobalStyle";
+import Home from "./components/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SignInInject from "./components/SignInInject";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Navbar />
+                <Route path="/" exact component={Home}></Route>
+                <Route path="/signInInject" component={SignInInject}></Route>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
