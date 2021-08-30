@@ -6,9 +6,9 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
     div {
         height: 500px;
-        overflow: auto;
+        overflow-x: hidden;
     }
-    height: 600px;
+    height: 650px;
     width: 1368px;
     border: 1px solid rgba(38, 56, 150, 0.1411764705882353);
     box-shadow: 0 4px 12px 0 rgb(34 41 47 / 12%);

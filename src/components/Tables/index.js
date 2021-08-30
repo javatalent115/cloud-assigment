@@ -5,18 +5,67 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { numberFormat } from "../../numberFormat";
 import "./tableCustom.css";
+import Posts from "../Posts";
+import Pagination from "../Pagination";
 const Tables = () => {
-    const [information, setInformation] = useState({});
-    async function fetchData() {
-        await axios.get("https://covid-api.mmediagroup.fr/v1/cases").then((res) => {
-            console.log(Object.values(res.data)[1].All.confirmed);
-            setInformation(res.data);
-        });
-    }
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(15);
+    const [active, setActive] = useState({
+        page: 1,
+        isActive: true,
+    });
 
     useEffect(() => {
-        fetchData();
+        const fetchPosts = async () => {
+            const res = await axios.get("https://covid-api.mmediagroup.fr/v1/cases");
+            console.log(res.data);
+            let obj = [];
+
+            // for (let i = 0; i < res.data.length;i++){
+            //     obj = [,{}]
+            // }
+            obj = Object.keys(res.data).map((key, index) => ({
+                name: res.data[Object.keys(res.data)[index]].All.country,
+                confirmed: res.data[Object.keys(res.data)[index]].All.confirmed,
+                deaths: res.data[Object.keys(res.data)[index]].All.deaths,
+                population: res.data[Object.keys(res.data)[index]].All.population,
+                abbreviation: res.data[Object.keys(res.data)[index]].All.abbreviation,
+                continent: res.data[Object.keys(res.data)[index]].All.continent,
+                life_expectancy: res.data[Object.keys(res.data)[index]].All.life_expectancy,
+                location: res.data[Object.keys(res.data)[index]].All.location,
+                id: index,
+            }));
+            console.log(obj);
+            setPosts(obj);
+            setLoading(false);
+        };
+
+        fetchPosts();
     }, []);
+
+    // console.log(posts);
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    // console.log("indexOfLastPost: ", indexOfLastPost);
+
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    // console.log("indexOfFirstPost: ", indexOfFirstPost);
+
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+    console.log(currentPosts);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        setActive({
+            page: pageNumber,
+            isActive: true,
+        });
+    };
+
+    const [information, setInformation] = useState([]);
+    const [page, setPage] = useState([]);
 
     return (
         <Wrapper>
@@ -42,39 +91,17 @@ const Tables = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.keys(information).map((key, index) => (
-                                <tr key={Object.keys(key)[index]}>
-                                    <td> {Object.keys(information)[index]}</td>
-
-                                    <td>
-                                        {numberFormat(
-                                            Object.values(information)[index].All.confirmed
-                                        )}
-                                    </td>
-                                    <td>
-                                        {" "}
-                                        {numberFormat(Object.values(information)[index].All.deaths)}
-                                    </td>
-                                    <td>
-                                        {" "}
-                                        {numberFormat(
-                                            Object.values(information)[index].All.population
-                                        )}
-                                    </td>
-                                    <td>
-                                        {" "}
-                                        {numberFormat(
-                                            Object.values(information)[index].All.life_expectancy
-                                        )}
-                                    </td>
-                                    <td> {Object.values(information)[index].All.continent}</td>
-                                    <td> {Object.values(information)[index].All.abbreviation}</td>
-                                    <td> {Object.values(information)[index].All.location}</td>
-                                </tr>
-                            ))}
+                            <Posts posts={currentPosts} loading={loading} />
                         </tbody>
                     </Table>
                 </div>
+                <Pagination
+                    style={{ margin: "20px" }}
+                    paginate={paginate}
+                    postsPerPage={postsPerPage}
+                    totalPosts={posts.length}
+                    current={active}
+                />
             </Content>
         </Wrapper>
     );

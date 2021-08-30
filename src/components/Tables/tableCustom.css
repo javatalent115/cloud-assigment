@@ -2,3 +2,19 @@
     border-collapse: unset;
     border-spacing: 0px !important;
 }
+.pagination {
+    justify-content: flex-end;
+    margin: 20px;
+}
+.pagination li {
+    cursor: pointer;
+    justify-content: flex-end;
+    margin: 2px;
+}
+.page-link {
+    border-radius: 7px !important;
+}
+.active {
+    background-color: blue;
+    border-radius: 7px;
+}
