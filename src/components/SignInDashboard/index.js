@@ -6,10 +6,9 @@ const SignInDashboard = () => {
         <Wrapper>
             <Content>
                 <Item>
-                    <p>Bước 1</p>
-                    <h5>Thông tin cá nhân</h5>
+                    <h2>Thông tin cá nhân</h2>
                 </Item>
-                <Item>
+                {/* <Item>
                     <p>Bước 2</p>
                     <h5>Tiền sử bệnh</h5>
                 </Item>
@@ -20,7 +19,7 @@ const SignInDashboard = () => {
                 <Item>
                     <p>Bước 4</p>
                     <h5>Hoàn thành</h5>
-                </Item>
+                </Item> */}
             </Content>
         </Wrapper>
     );
