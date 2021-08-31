@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import "./SignInForm-custom.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-const SignInForm = () => {
+const SignInForm = ({ handleSignIn }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -13,15 +13,16 @@ const SignInForm = () => {
             const infomation = {
                 email: email,
                 password,
-                password,
             };
             console.log(infomation);
+            handleSignIn();
+            window.location.href = "/";
         }
         if (email.length === 0 && password.length === 0) {
             alert("You need to place your email and password!!");
         } else if (password.length === 0) {
             alert("You need to place your password");
-        } else {
+        } else if (email.length === 0) {
             alert("You need to place your email");
         }
     };

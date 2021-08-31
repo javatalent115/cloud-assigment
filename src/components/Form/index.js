@@ -4,8 +4,8 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import "./custom-bootstrap.css";
 import axios from "axios";
-import SignInInject from "../SignInInject";
-const Forms = ({ handleSignIn }) => {
+import SignUp from "../SignUp";
+const Forms = ({ handleSignUp }) => {
     const [validated, setValidated] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -21,8 +21,6 @@ const Forms = ({ handleSignIn }) => {
             event.stopPropagation();
         }
         setValidated(true);
-        localStorage.setItem("account", true);
-        handleSignIn();
         if (
             name.length > 0 &&
             email.length > 0 &&
@@ -39,7 +37,7 @@ const Forms = ({ handleSignIn }) => {
                 phoneNum: phoneNum,
                 address: address,
             };
-            handleSignIn();
+            handleSignUp();
             setValidated(false);
             // const headers = {
             //     "Access-Control-Allow-Origin": "https://localhost:3000",

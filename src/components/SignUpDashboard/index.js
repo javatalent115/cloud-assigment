@@ -1,7 +1,7 @@
 import React from "react";
 import { Wrapper, Content, Item } from "./SignInDashboard.styles";
 
-const SignInDashboard = () => {
+const SignUpDashboard = () => {
     return (
         <Wrapper>
             <Content>
@@ -25,4 +25,4 @@ const SignInDashboard = () => {
     );
 };
 
-export default SignInDashboard;
+export default SignUpDashboard;

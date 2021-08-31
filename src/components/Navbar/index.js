@@ -30,11 +30,10 @@ const Navbar = ({ account, handleSignOut }) => {
                 <Link to="/">
                     <RightNavItem>Trang chủ</RightNavItem>
                 </Link>
-
-                <Link to="/signInInject">
+                <Link to="/signUp">
                     <RightNavItem>Đăng ký tiêm</RightNavItem>
                 </Link>
-                <Link to="/signUp">
+                <Link to="/signIn">
                     <RightNavItem>Đăng nhập</RightNavItem>
                 </Link>
             </>
