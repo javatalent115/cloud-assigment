@@ -19,7 +19,7 @@ const SignUp = ({ handleSignUp }) => {
                 </DashBoardContent>
             </DashBoardWrapper>
             <SignUpDashboard />
-            <Forms handleSignIn={handleSignUp}></Forms>
+            <Forms handleSignUp={handleSignUp}></Forms>
         </div>
     );
 };

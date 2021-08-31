@@ -23,7 +23,9 @@ function App() {
         }
     }, [account]);
 
-    const handleSignUp = () => {};
+    const handleSignUp = () => {
+        console.log("hello");
+    };
     const handleSignIn = () => {
         localStorage.setItem("account", true);
         setAccount(true);
@@ -37,7 +39,7 @@ function App() {
         <Router>
             <div className="App">
                 <Navbar account={account} handleSignOut={handleSignOut} />
-                <Route path="/" exact>
+                <Route path="/home" exact>
                     <Home></Home>
                 </Route>
                 <Route path="/signUp">

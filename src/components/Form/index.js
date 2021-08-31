@@ -30,26 +30,28 @@ const Forms = ({ handleSignUp }) => {
             address.length > 0
         ) {
             const information = {
-                name: name,
+                username: name,
                 email: email,
                 gender: gender,
                 dob: dob,
-                phoneNum: phoneNum,
+                phone: phoneNum,
                 address: address,
             };
+            console.log(information);
             handleSignUp();
             setValidated(false);
-            // const headers = {
-            //     "Access-Control-Allow-Origin": "https://localhost:3000",
-            //     "Access-Control-Allow-Credentials": true,
-            // };
-            // const article = { title: "Axios POST Request Example" };
-            // axios
-            //     .get("http://localhost:3000/getUserData", article, { headers })
-            //     .then((response) => console.log(response.data))
-            //     .catch((error) => {
-            //         console.error("There was an error!", error);
-            //     });
+            // window.location.href = "/home";
+            const headers = {
+                headers: { "Content-type": "application/json" },
+            };
+            axios.post("http://localhost:3000/signups", information, headers).then(
+                (response) => {
+                    console.log(response);
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
         }
     };
 
@@ -58,7 +60,7 @@ const Forms = ({ handleSignUp }) => {
             <Content>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Group as={Col} controlId="formGridName">
                             <Form.Label>Họ và Tên</Form.Label>
                             <Form.Control
                                 required

@@ -12,11 +12,11 @@ const Navbar = ({ account, handleSignOut }) => {
     if (account) {
         item = (
             <>
-                <Link to="/">
+                <Link to="/home">
                     <RightNavItem>Trang chủ</RightNavItem>
                 </Link>
 
-                <Link to="/">
+                <Link to="/home">
                     <RightNavItem>Tra cứu</RightNavItem>
                 </Link>
                 <li>
@@ -27,7 +27,7 @@ const Navbar = ({ account, handleSignOut }) => {
     } else {
         item = (
             <>
-                <Link to="/">
+                <Link to="/home">
                     <RightNavItem>Trang chủ</RightNavItem>
                 </Link>
                 <Link to="/signUp">
