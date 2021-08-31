@@ -1,12 +1,17 @@
 const database = require("./database");
 const express = require("express");
+const path = require("path");
 const app = express();
 const body_parser = require("body-parser");
-const { deflateRaw } = require("zlib");
 
-const port = 3001;
+const port = 3000;
 app.use(body_parser.urlencoded({ extended: false }));
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.post("/validateAccount", (req, res) => {
     database.is_valid_account(req.body.email, req.body.password, (isExist) => {
