@@ -1,10 +1,12 @@
 .table {
     border-collapse: unset;
     border-spacing: 0px !important;
+    overflow: auto !important;
+    height: 200px !important;
 }
 .pagination {
     justify-content: flex-end;
-    margin: 20px;
+    margin-top: 20px;
 }
 .pagination li {
     cursor: pointer;

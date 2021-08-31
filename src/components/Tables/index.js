@@ -11,7 +11,7 @@ const Tables = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(15);
+    const [postsPerPage, setPostsPerPage] = useState(10);
     const [active, setActive] = useState({
         page: 1,
         isActive: true,
@@ -20,7 +20,6 @@ const Tables = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             const res = await axios.get("https://covid-api.mmediagroup.fr/v1/cases");
-            console.log(res.data);
             let obj = [];
 
             // for (let i = 0; i < res.data.length;i++){
@@ -37,7 +36,7 @@ const Tables = () => {
                 location: res.data[Object.keys(res.data)[index]].All.location,
                 id: index,
             }));
-            console.log(obj);
+
             setPosts(obj);
             setLoading(false);
         };
@@ -55,7 +54,6 @@ const Tables = () => {
 
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-    console.log(currentPosts);
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
         setActive({

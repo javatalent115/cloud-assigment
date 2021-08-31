@@ -4,10 +4,15 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import "./custom-bootstrap.css";
 import axios from "axios";
-const Forms = () => {
+import SignInInject from "../SignInInject";
+const Forms = ({ handleSignIn }) => {
     const [validated, setValidated] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [gender, setGender] = useState("");
+    const [dob, setDob] = useState("");
+    const [phoneNum, setPhoneNum] = useState("");
+    const [address, setAddress] = useState("");
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -16,24 +21,40 @@ const Forms = () => {
             event.stopPropagation();
         }
         setValidated(true);
-        if (name.length > 0 && email.length > 0) {
-            console.log("hello");
-            setValidated(false);
-            const headers = {
-                "Access-Control-Allow-Origin": "https://localhost:3000",
-                "Access-Control-Allow-Credentials": true,
+        localStorage.setItem("account", true);
+        handleSignIn();
+        if (
+            name.length > 0 &&
+            email.length > 0 &&
+            gender.length > 0 &&
+            dob.length > 0 &&
+            phoneNum.length > 0 &&
+            address.length > 0
+        ) {
+            const information = {
+                name: name,
+                email: email,
+                gender: gender,
+                dob: dob,
+                phoneNum: phoneNum,
+                address: address,
             };
-            const article = { title: "Axios POST Request Example" };
-            axios
-                .get("http://localhost:3000/getUserData", article, { headers })
-                .then((response) => console.log(response.data))
-                .catch((error) => {
-                    console.error("There was an error!", error);
-                });
-            setName("");
-            setEmail("");
+            handleSignIn();
+            setValidated(false);
+            // const headers = {
+            //     "Access-Control-Allow-Origin": "https://localhost:3000",
+            //     "Access-Control-Allow-Credentials": true,
+            // };
+            // const article = { title: "Axios POST Request Example" };
+            // axios
+            //     .get("http://localhost:3000/getUserData", article, { headers })
+            //     .then((response) => console.log(response.data))
+            //     .catch((error) => {
+            //         console.error("There was an error!", error);
+            //     });
         }
     };
+
     return (
         <Wrapper>
             <Content>
@@ -57,6 +78,7 @@ const Forms = () => {
                                 aria-label="Floating label select example"
                                 defaultValue="Gender"
                                 custom
+                                onChange={(e) => setGender(e.target.value)}
                             >
                                 <option value="1">Nam</option>
                                 <option value="2">Nũ</option>
@@ -64,7 +86,12 @@ const Forms = () => {
                         </Form.Group>
                         <Form.Group as={Col} controlId="dob">
                             <Form.Label>Ngày sinh</Form.Label>
-                            <Form.Control required type="date" placeholder="" />
+                            <Form.Control
+                                required
+                                type="date"
+                                placeholder=""
+                                onChange={(e) => setDob(e.target.value)}
+                            />
                         </Form.Group>
                     </Row>
                     <Row>
@@ -81,20 +108,25 @@ const Forms = () => {
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Số điện thoại</Form.Label>
-                            <Form.Control required type="number" pattern="^-?[0-9]\d*\.?\d*$" />
+                            <Form.Control
+                                required
+                                type="number"
+                                pattern="^-?[0-9]\d*\.?\d*$"
+                                onChange={(e) => setPhoneNum(e.target.value)}
+                            />
                         </Form.Group>
                     </Row>
 
                     <Form.Group className="mb-3" controlId="formGridAddress1">
                         <Form.Label>Address</Form.Label>
-                        <Form.Control placeholder="1234 Main St" />
+                        <Form.Control
+                            required
+                            placeholder="1234 Main St"
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" id="formGridCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Form>

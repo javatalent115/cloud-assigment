@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const DashBoardWrapper = styled.div`
     background-color: #f8f8f8;
     margin: 20px 0px;
 `;
-export const Content = styled.div`
+export const DashBoardContent = styled.div`
     display: flex;
     max-width: 1366px;
     margin: 0 auto;

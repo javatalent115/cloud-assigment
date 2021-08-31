@@ -1,14 +1,14 @@
 import React from "react";
 import SignInDashboard from "../SignInDashboard";
-import { Content, Wrapper } from "./SingInInject.styles";
+import { DashBoardContent, DashBoardWrapper } from "./SingInInject.styles";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Forms from "../Form";
-
-const SignInInject = () => {
+import "./custom.css";
+const SignInInject = ({ handleSignIn }) => {
     return (
-        <div>
-            <Wrapper>
-                <Content>
+        <div className="a">
+            <DashBoardWrapper>
+                <DashBoardContent>
                     <h3>Đăng ký tiêm cá nhân</h3>
                     <div>
                         <div>
@@ -16,10 +16,10 @@ const SignInInject = () => {
                         </div>
                         <span>Đăng ký tiêm</span>
                     </div>
-                </Content>
-            </Wrapper>
+                </DashBoardContent>
+            </DashBoardWrapper>
             <SignInDashboard />
-            <Forms />
+            <Forms handleSignIn={handleSignIn}></Forms>
         </div>
     );
 };

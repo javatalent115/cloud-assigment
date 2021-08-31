@@ -1,0 +1,18 @@
+.btn {
+    width: 100%;
+    border-radius: 7px;
+}
+.btn:hover {
+    background-color: #ce0e0e;
+    border-color: white;
+}
+
+.btn-2 {
+    background-color: white;
+    color: red;
+}
+
+.btn-2:hover {
+    background-color: rgb(236, 156, 156);
+    border-color: white;
+}
