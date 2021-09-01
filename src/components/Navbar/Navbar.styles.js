@@ -4,6 +4,9 @@ export const Wrapper = styled.div`
     background: linear-gradient(133deg, #ed1b23, #2e3091, #253494) !important;
     align-items: center;
     color: white;
+    .dropdown-menu {
+        inset: 12px auto auto 0px !important;
+    }
     justify-content: center;
 `;
 
@@ -37,14 +40,33 @@ export const RightNav = styled.ul`
         text-decoration: none;
         color: white;
     }
+
+    .account {
+        display: flex;
+        align-items: center;
+        .btn {
+            background-color: #2d2188;
+            border-color: #2d2188;
+        }
+        li:hover {
+            background-color: lightgray;
+        }
+        * {
+            margin: 0 5px;
+        }
+    }
+    .image {
+        padding: 0px !important;
+        width: 35px;
+        background-color: white;
+        border-radius: 50%;
+        cursor: pointer;
+    }
 `;
 
 export const RightNavItem = styled.li`
     cursor: pointer;
-    &::before {
-        content: "${({ content }) => content}";
-    }
     font-weight: bold;
-    padding: 12px 0 12px 25px;
+    padding: 12px 25px 12px 25px;
     align-items: center;
 `;

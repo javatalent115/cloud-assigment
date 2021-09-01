@@ -1,7 +1,7 @@
 import React from "react";
 import { Wrapper, LeftNavItem, RightNavItem, RightNav, Content } from "./Navbar.styles";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { Dropdown, DropdownButton } from "react-bootstrap";
 const Navbar = ({ account, handleSignOut }) => {
     let item;
 
@@ -20,9 +20,18 @@ const Navbar = ({ account, handleSignOut }) => {
                 <Link to="/information">
                     <RightNavItem>Tra cứu</RightNavItem>
                 </Link>
-                <li>
-                    <RightNavItem onClick={abc}>Đăng xuất</RightNavItem>
-                </li>
+                <div className="account">
+                    <img
+                        src="https://static.thenounproject.com/png/3070444-200.png"
+                        className="image"
+                        alt=""
+                    ></img>
+                    <DropdownButton align="end" id="dropdown-menu-align-end">
+                        <li>
+                            <RightNavItem onClick={abc}>Đăng xuất</RightNavItem>
+                        </li>
+                    </DropdownButton>
+                </div>
             </>
         );
     } else {
