@@ -54,18 +54,22 @@ module.exports.confirmVacination = function (user, cb) {
     var query = "";
     if (user.isfirstshot)
         query =
-            "INSERT into UserInformation (firstshot, firstshotdate) VALUES ('" +
-            userdata.vacineName +
-            "','" +
-            userdata.date +
-            "');";
+            "UPDATE UserInformation SET firstshot ='" +
+            user.vaccineName +
+            "', firstshotdate = '" +
+            user.date +
+            "' WHERE email ='" +
+            user.email +
+            "';";
     else
         query =
-            "INSERT into UserInformation (secondshot, secondshotdate) VALUES ('" +
-            userdata.vacineName +
-            "','" +
-            userdata.date +
-            "');";
+            "UPDATE UserInformation SET secondshot ='" +
+            user.vaccineName +
+            "', secondshotdate = '" +
+            user.date +
+            "' WHERE email ='" +
+            user.email +
+            "';";
     db.run(query, function (err) {
         if (!err) isSucessful = true;
         else console.log(err);

@@ -13,6 +13,7 @@ const Forms = ({ handleSignUp }) => {
     const [dob, setDob] = useState("");
     const [phoneNum, setPhoneNum] = useState("");
     const [address, setAddress] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -27,7 +28,8 @@ const Forms = ({ handleSignUp }) => {
             gender.length > 0 &&
             dob.length > 0 &&
             phoneNum.length > 0 &&
-            address.length > 0
+            address.length > 0 &&
+            password.length > 0
         ) {
             const information = {
                 username: name,
@@ -36,22 +38,26 @@ const Forms = ({ handleSignUp }) => {
                 dob: dob,
                 phone: phoneNum,
                 address: address,
+                password: password,
             };
-            console.log(information);
-            handleSignUp();
-            setValidated(false);
-            // window.location.href = "/home";
             const headers = {
                 headers: { "Content-type": "application/json" },
             };
             axios.post("http://localhost:3000/signups", information, headers).then(
                 (response) => {
                     console.log(response);
+                    if (response.data !== false) {
+                        window.location.href = "/signIn";
+                    } else {
+                        alert("This email has been used");
+                    }
                 },
                 (error) => {
                     console.log(error);
                 }
             );
+            handleSignUp();
+            setValidated(false);
         }
     };
 
@@ -77,11 +83,17 @@ const Forms = ({ handleSignUp }) => {
                             <Form.Select
                                 aria-label="Floating label select example"
                                 defaultValue="Gender"
-                                custom
+                                required
                                 onChange={(e) => setGender(e.target.value)}
                             >
-                                <option value="1">Nam</option>
-                                <option value="2">Nũ</option>
+                                <option value="" selected>
+                                    Gender
+                                </option>
+                                <option value="Male" selected>
+                                    Nam
+                                </option>
+                                <option value="Female">Nũ</option>
+                                <option value="Other">LGBT</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group as={Col} controlId="dob">
@@ -99,14 +111,24 @@ const Forms = ({ handleSignUp }) => {
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
                                 required
-                                type="email"
-                                placeholder="Enter email address"
+                                placeholder="Enter email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Group as={Col} controlId="formGridName">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                required
+                                type="email"
+                                placeholder="Enter email address"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group as={Col}>
                             <Form.Label>Số điện thoại</Form.Label>
                             <Form.Control
                                 required

@@ -23,6 +23,7 @@ export const Content = styled.div`
         font-weight: bolder;
         font-size: 20px;
     }
+
     box-shadow: 0 10px 30px 0 rgb(38 57 52 / 15%);
     max-width: 1366px;
     margin: 0 auto;

@@ -45,8 +45,8 @@ export const RightNav = styled.ul`
         display: flex;
         align-items: center;
         .btn {
-            background-color: #2d2188;
-            border-color: #2d2188;
+            background-color: #263394;
+            border-color: #263394;
         }
         li:hover {
             background-color: lightgray;

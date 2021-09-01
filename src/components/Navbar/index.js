@@ -26,7 +26,7 @@ const Navbar = ({ account, handleSignOut }) => {
                         className="image"
                         alt=""
                     ></img>
-                    <DropdownButton align="end" id="dropdown-menu-align-end">
+                    <DropdownButton align="end" id="dropdown-menu-align-end" title="">
                         <li>
                             <RightNavItem onClick={abc}>Đăng xuất</RightNavItem>
                         </li>

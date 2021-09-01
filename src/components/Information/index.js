@@ -3,22 +3,28 @@ import { DashBoardContent, DashBoardWrapper } from "../SignUp/SignUp.styles";
 import { Link } from "react-router-dom";
 import { Content, Item, Wrapper } from "./Information.styles";
 import { useState } from "react";
-import { Row, Col, ProgressBar, Button, Table } from "react-bootstrap";
+import { Row, Col, ProgressBar, Button, Table, Modal, Form } from "react-bootstrap";
 import axios from "axios";
 import Posts from "../Posts";
 import Pagination from "../Pagination";
 import DisplayInfo from "./displayInfo";
-
+import "./custom.css";
 const Information = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(10);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [vaccineName, setVaccineName] = useState("");
+    const [vaccineDate, setVaccineDate] = useState("");
+
     const [active, setActive] = useState({
         page: 1,
         isActive: true,
     });
-
+    const headers = {
+        headers: { "Content-type": "application/json" },
+    };
     let roles = localStorage.getItem("roles");
     const [role, setRole] = useState(roles);
     const [progress, setProgress] = useState(0);
@@ -37,9 +43,6 @@ const Information = () => {
 
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
     async function fetchData() {
-        const headers = {
-            headers: { "Content-type": "application/json" },
-        };
         axios
             .post(
                 "http://localhost:3000/getUserData",
@@ -51,8 +54,8 @@ const Information = () => {
                     if (localStorage.getItem("roles") === "user") {
                         let data = response.data[0];
                         console.log(data.secondshot);
-                        if (data.firstshot !== null) {
-                            if (data.secondshot !== null) {
+                        if (data.firstshot !== null && data.firstshot !== "") {
+                            if (data.secondshot !== null && data.secondshot !== "") {
                                 setProgress(100);
                                 setConclude("Đã tiêm 2 mũi");
                             } else {
@@ -92,17 +95,65 @@ const Information = () => {
         });
     };
     const handleConfirmButton = () => {
-        if (progress === 0) {
-            setProgress(50);
-            setConclude("Bạn đã tiêm 1 liều");
-            setButtonText("Xác nhận đã tiêm mũi 2");
+        if (vaccineDate.length > 0 && vaccineName.length > 0) {
+            let vaccineInfo;
+            if (progress == 50) {
+                vaccineInfo = {
+                    isfirstshot: false,
+                    email: localStorage.getItem("email"),
+                    vaccineName: vaccineName,
+                    date: vaccineDate,
+                };
+            } else {
+                vaccineInfo = {
+                    isfirstshot: true,
+                    email: localStorage.getItem("email"),
+                    vaccineName: vaccineName,
+                    date: vaccineDate,
+                };
+            }
+            axios.post("http://localhost:3000/confirmVacination", vaccineInfo, headers).then(
+                (response) => {
+                    console.log(response);
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+
+            if (progress === 0) {
+                setProgress(50);
+                setConclude("Bạn đã tiêm 1 liều");
+                setButtonText("Xác nhận đã tiêm mũi 2");
+            } else {
+                setProgress(100);
+                setConclude("Bạn đã tiêm đủ");
+            }
+            setModalShow(false);
+            console.log(vaccineName);
+            console.log(vaccineDate);
+            setVaccineName("");
+            setVaccineDate("");
         } else {
-            setProgress(100);
-            setConclude("Bạn đã tiêm đủ");
+            alert("Please enter all information");
         }
     };
+
     if (progress === 0 || progress === 50) {
-        buttonRender = <Button onClick={handleConfirmButton}>{buttonText}</Button>;
+        buttonRender = (
+            <>
+                <Button onClick={() => setModalShow(true)}>{buttonText}</Button>
+                <MyVerticallyCenteredModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                    handleconfirmbutton={handleConfirmButton}
+                    name={vaccineName}
+                    setVaccineName={setVaccineName}
+                    date={vaccineDate}
+                    setVaccineDate={setVaccineDate}
+                />
+            </>
+        );
     }
 
     if (role === "user") {
@@ -235,5 +286,72 @@ const Information = () => {
         </>
     );
 };
-
+function MyVerticallyCenteredModal(props) {
+    return (
+        <Modal
+            show={props.show}
+            onHide={props.onHide}
+            handleconfirmbutton={props.handleConfirmButton}
+            name={props.name}
+            date={props.date}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Nhập loại thuốc và ngày mà bạn đã tiêm
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form.Group as={Col} controlId="formGridName">
+                    <Form.Label>Tên thuốc</Form.Label>
+                    {/* <Form.Control
+                        type="text"
+                        placeholder="Vaccine name"
+                        value={props.name}
+                        onChange={(e) => props.setVaccineName(e.target.value)}
+                    /> */}
+                    <Form.Select
+                        aria-label="Floating label select example"
+                        onChange={(e) => props.setVaccineName(e.target.value)}
+                    >
+                        <option value="" selected>
+                            Vaccine
+                        </option>
+                        <option value="AstraZeneca">AstraZeneca</option>
+                        <option value="SPUTNIK V">SPUTNIK V</option>
+                        <option value="Sinopharm">Sinopharm</option>
+                        <option value="Pfizer">Pfizer</option>
+                        <option value="Moderna">Moderna</option>
+                        <option value="Janssen">Janssen</option>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group as={Col} controlId="dob">
+                    <Form.Label>Ngày chích</Form.Label>
+                    <Form.Control
+                        type="date"
+                        placeholder=""
+                        onChange={(e) => props.setVaccineDate(e.target.value)}
+                    />
+                </Form.Group>
+                <p></p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Row>
+                    <Col>
+                        <Button onClick={props.handleconfirmbutton} className="confirm-button">
+                            Confirm
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button onClick={props.onHide} className="close-button">
+                            Close
+                        </Button>
+                    </Col>
+                </Row>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 export default Information;

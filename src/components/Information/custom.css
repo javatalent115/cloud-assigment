@@ -1,0 +1,10 @@
+.confirm-button {
+    background-color: rgb(27, 180, 27);
+    border-color: green;
+}
+.confirm-button:hover {
+    background-color: rgb(16, 116, 16);
+}
+.modal-content {
+    border-radius: 13px;
+}
