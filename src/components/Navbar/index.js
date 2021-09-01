@@ -7,6 +7,7 @@ const Navbar = ({ account, handleSignOut }) => {
 
     const abc = () => {
         handleSignOut();
+        window.location.href = "/";
     };
     console.log(account);
     if (account) {
@@ -16,7 +17,7 @@ const Navbar = ({ account, handleSignOut }) => {
                     <RightNavItem>Trang chủ</RightNavItem>
                 </Link>
 
-                <Link to="/home">
+                <Link to="/information">
                     <RightNavItem>Tra cứu</RightNavItem>
                 </Link>
                 <li>

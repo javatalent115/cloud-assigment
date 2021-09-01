@@ -19,7 +19,7 @@
         "body-parser": "^1.19.0",
         "express": "^4.17.1"
     },
-    "scripts": { 
+    "scripts": {
         "start": "react-scripts build && node abc",
         "build": "react-scripts build",
         "serve": "node abc",

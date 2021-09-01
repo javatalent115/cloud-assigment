@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
+import Information from "./components/Information";
 function App() {
     let accountState = localStorage.getItem("account");
     const [account, setAccount] = useState(JSON.parse(accountState));
@@ -39,6 +40,9 @@ function App() {
         <Router>
             <div className="App">
                 <Navbar account={account} handleSignOut={handleSignOut} />
+                <Route path="/" exact>
+                    <Home></Home>
+                </Route>
                 <Route path="/home" exact>
                     <Home></Home>
                 </Route>
@@ -47,6 +51,9 @@ function App() {
                 </Route>
                 <Route path="/signIn">
                     <SignIn handleSignIn={handleSignIn}></SignIn>
+                </Route>
+                <Route path="/information">
+                    <Information></Information>
                 </Route>
                 <Footer />
             </div>

@@ -9,7 +9,7 @@ module.exports.is_valid_account = function (email, password, cb) {
         };
         if (err) return cb(err);
         rows.forEach(function (row) {
-            if (email === row.email && password === row.password) {
+            if (email === row.email && password == row.password) {
                 obj.email = row.email;
                 obj.role = row.role;
             }
@@ -125,6 +125,10 @@ module.exports.dataList = function (user, cb) {
                         dob: row.dob,
                         phone: row.phone_number,
                         address: row.address,
+                        firstshot: row.firstshot,
+                        secondshot: row.secondshot,
+                        firstshotdate: row.firstshotdate,
+                        secondshotdate: row.secondshotdate,
                     };
                     list[index] = data;
                     index++;
@@ -146,6 +150,10 @@ module.exports.dataList = function (user, cb) {
                     dob: rows[0].dob,
                     phone: rows[0].phone_number,
                     address: rows[0].address,
+                    firstshot: rows[0].firstshot,
+                    secondshot: rows[0].secondshot,
+                    firstshotdate: rows[0].firstshotdate,
+                    secondshotdate: rows[0].secondshotdate,
                 };
                 list[0] = data;
                 db.close();

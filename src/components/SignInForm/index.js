@@ -15,35 +15,38 @@ const SignInForm = ({ handleSignIn }) => {
                 email: email,
                 password: password,
             };
+            console.log(information);
+
             const headers = {
                 headers: { "Content-type": "application/json" },
             };
-            axios
-                .post(
-                    "http://localhost:3000/getUserData",
-                    { email: "Admin@gmail.com", role: "Admin" },
-                    headers
-                )
-                .then(
-                    (response) => {
-                        console.log(response);
-                    },
-                    (error) => {
-                        console.log(error);
-                    }
-                );
-            // axios.post("http://localhost:3000/validateAccount", information, headers).then(
-            //     (response) => {
-            //         console.log(response);
-            //         if (response.data.email.length > 0) {
-            //             handleSignIn();
-            //             window.location.href = "/home";
+            // axios
+            //     .post(
+            //         "http://localhost:3000/getUserData",
+            //         { email: "Admin@gmail.com", role: "Admin" },
+            //         headers
+            //     )
+            //     .then(
+            //         (response) => {
+            //             console.log(response);
+            //         },
+            //         (error) => {
+            //             console.log(error);
             //         }
-            //     },
-            //     (error) => {
-            //         console.log(error);
-            //     }
-            // );
+            //     );
+            axios.post("http://localhost:3000/validateAccount", information, headers).then(
+                (response) => {
+                    if (response.data.email.length > 0) {
+                        localStorage.setItem("roles", response.data.role);
+                        localStorage.setItem("email", response.data.email);
+                        handleSignIn();
+                        window.location.href = "/home";
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
         }
         if (email.length === 0 && password.length === 0) {
             alert("You need to place your email and password!!");

@@ -34,7 +34,6 @@ app.post("/confirmVacination", (req, res) => {
 // });
 
 app.post("/signups", (req, res) => {
-    console.log(req.body);
     database.signup(req.body, (isSucessful) => {
         console.log(isSucessful);
         res.send(isSucessful);
