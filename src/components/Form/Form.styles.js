@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     margin-top: 20px;
-    height: fit-content;
+    min-height: 45vh;
 `;
 export const Content = styled.div`
     max-width: 1366px;

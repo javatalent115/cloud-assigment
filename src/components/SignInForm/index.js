@@ -5,10 +5,11 @@ import "./SignInForm-custom.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import "./custom.css";
 const SignInForm = ({ handleSignIn }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [inValidMessage, setInvalidMessage] = useState("");
     const handleSubmit = () => {
         if (email.length > 0 && password.length > 0) {
             const information = {
@@ -41,6 +42,8 @@ const SignInForm = ({ handleSignIn }) => {
                         localStorage.setItem("email", response.data.email);
                         handleSignIn();
                         window.location.href = "/home";
+                    } else {
+                        setInvalidMessage("Wrong username or password!!");
                     }
                 },
                 (error) => {
@@ -85,6 +88,7 @@ const SignInForm = ({ handleSignIn }) => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Form.Group>
+                    <div className="invalid-message">{inValidMessage}</div>
                     <h6>Quên mật khẩu?</h6>
                     <Button variant="primary" style={{ width: "100%;" }} onClick={handleSubmit}>
                         Sign In

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     margin-top: 20px;
     height: fit-content;
+    min-height: calc(100vh - 300px - 78px);
     img {
         width: 100px;
         padding: 0;
