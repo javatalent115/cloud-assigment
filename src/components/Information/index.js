@@ -74,9 +74,10 @@ const Information = () => {
                             phoneNum: data.phone,
                             progress: progress,
                             conclude: conclude,
+                            firstshotdate: data.firstshotdate,
+                            secondshotdate: data.secondshotdate,
                         });
                     } else {
-                        console.log(response);
                         setTableInfo(response.data);
                         setPosts(response.data);
                         setLoading(false);
@@ -190,7 +191,7 @@ const Information = () => {
                         </Col>
                         <Col>
                             <Item>
-                                <h6>Số cmnd/cccd</h6>
+                                <h6>Email</h6>
                                 <h5>{information.email}</h5>
                             </Item>
                         </Col>
@@ -240,15 +241,15 @@ const Information = () => {
                     <Table>
                         <thead>
                             <tr>
-                                <th>User Name</th>
                                 <th>Email</th>
-                                <th>password</th>
                                 <th>Gender</th>
                                 <th>Address</th>
                                 <th>Date of birth</th>
                                 <th>Phone number</th>
                                 <th>First Dose</th>
+                                <th>Date</th>
                                 <th>Second Dose</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>

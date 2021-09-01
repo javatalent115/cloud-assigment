@@ -29,7 +29,8 @@ const Forms = ({ handleSignUp }) => {
             dob.length > 0 &&
             phoneNum.length > 0 &&
             address.length > 0 &&
-            password.length > 0
+            password.length > 0 &&
+            email.includes("@")
         ) {
             const information = {
                 username: name,
@@ -93,7 +94,7 @@ const Forms = ({ handleSignUp }) => {
                                     Nam
                                 </option>
                                 <option value="Female">Nũ</option>
-                                <option value="Other">LGBT</option>
+                                <option value="Other">Other</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group as={Col} controlId="dob">
@@ -111,18 +112,19 @@ const Forms = ({ handleSignUp }) => {
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
                                 required
+                                type="email"
                                 placeholder="Enter email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="formGridName">
+                        <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 required
-                                type="email"
-                                placeholder="Enter email address"
+                                placeholder="Enter password"
+                                type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />

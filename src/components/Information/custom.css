@@ -8,3 +8,10 @@
 .modal-content {
     border-radius: 13px;
 }
+.pagination {
+    justify-content: center;
+}
+/* tr {
+    vertical-align: middle;
+    text-align: center;
+} */
