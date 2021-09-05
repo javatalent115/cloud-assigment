@@ -20,6 +20,9 @@ const Navbar = ({ account, handleSignOut }) => {
                 <Link to="/information">
                     <RightNavItem>Tra cứu</RightNavItem>
                 </Link>
+                <Link to="/validationPage">
+                    <RightNavItem>Validation</RightNavItem>
+                </Link>
                 <div className="account">
                     <img
                         src="https://static.thenounproject.com/png/3070444-200.png"

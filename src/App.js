@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
 import Information from "./components/Information";
+import ValidationPage from "./components/ValidationPage";
 function App() {
     let accountState = localStorage.getItem("account");
     const [account, setAccount] = useState(JSON.parse(accountState));
@@ -54,6 +55,9 @@ function App() {
                 </Route>
                 <Route path="/information">
                     <Information></Information>
+                </Route>
+                <Route path="/validationPage">
+                    <ValidationPage></ValidationPage>
                 </Route>
                 <Footer />
             </div>
