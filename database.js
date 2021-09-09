@@ -99,7 +99,7 @@ module.exports.getConfirmStatus = function (user, cb) {
 module.exports.submitConfirmForm = function (user, cb) {
     var isSucessful = false;
     var db = new sqlite3.Database("test.db");
-    var query = query =
+    var query =
     "UPDATE UserInformation SET confirmation_time ='" +
     user.confirmation_time +
     "', confirmation_status = '" +
