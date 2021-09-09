@@ -6,12 +6,14 @@ module.exports.is_valid_account = function (email, password, cb) {
         var obj = {
             email: "",
             role: "",
+            avatar: ""
         };
         if (err) return cb(err);
         rows.forEach(function (row) {
             if (email === row.email && password == row.password) {
                 obj.email = row.email;
                 obj.role = row.role;
+                obj.avatar = row.avatar;
             }
         });
         db.close();
@@ -78,39 +80,40 @@ module.exports.confirmVacination = function (user, cb) {
     });
 };
 
-// module.exports.isAdmin = function (email, cb) {
-//     var isAdmin = false;
-//     db.all("SELECT role FROM UserInformation WHERE email ='" + email + "';", function (err, rows) {
-//         if (!err && rows[0] == "Admin") isAdmin = true;
-//         else console.log(err);
-//         db.close();
-//         cb(isAdmin);
-//     });
-// };
+module.exports.getConfirmStatus = function (user, cb) {
+    var db = new sqlite3.Database("test.db");
+    var query = "SELECT confirmation_time, confirmation_status UserInformation WHERE email ='" + user.email + "';";
+    db.all(query, function (err, rows) {
+        if (err) return cb(err);
+        var data = {
+            email: rows[0].confirmation_time,
+            password: rows[0].confirmation_status
+        };
+        db.close();
+        cb(data);
+    });
+};
 
-// module.exports.dataList = function (cb) {
-//     var list = [];
-//     var db = new sqlite3.Database("test.db");
-//     db.all("SELECT * FROM UserInformation", function (err, rows) {
-//         if (err) return cb(err);
-//         let index = 0;
-//         rows.forEach(function (row) {
-//             var data = {
-//                 email: row.email,
-//                 password: row.password,
-//                 username: row.username,
-//                 gender: row.gender,
-//                 dob: row.dob,
-//                 phone: row.phone,
-//                 address: row.address,
-//             };
-//             list[index] = data;
-//             index++;
-//         });
-//         db.close();
-//         cb(list);
-//     });
-// };
+module.exports.submitConfirmForm = function (user, cb) {
+    var isSucessful = false;
+    var db = new sqlite3.Database("test.db");
+    var query = query =
+    "UPDATE UserInformation SET confirmation_time ='" +
+    user.confirmation_time +
+    "', confirmation_status = '" +
+    user.confirmation_status +
+    "' WHERE email ='" +
+    user.email +
+    "';";
+        
+    db.run(query, function (err) {
+        if (!err) isSucessful = true;
+        else console.log(err);
+        db.close();
+        cb(isSucessful);
+    });
+};
+
 
 module.exports.dataList = function (user, cb) {
     var list = [];
@@ -133,6 +136,7 @@ module.exports.dataList = function (user, cb) {
                         secondshot: row.secondshot,
                         firstshotdate: row.firstshotdate,
                         secondshotdate: row.secondshotdate,
+                        confirmation_status: row.confirmation_status
                     };
                     list[index] = data;
                     index++;
@@ -158,6 +162,7 @@ module.exports.dataList = function (user, cb) {
                     secondshot: rows[0].secondshot,
                     firstshotdate: rows[0].firstshotdate,
                     secondshotdate: rows[0].secondshotdate,
+                    confirmation_status: rows[0].confirmation_status
                 };
                 list[0] = data;
                 db.close();

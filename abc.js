@@ -27,11 +27,22 @@ app.post("/confirmVacination", (req, res) => {
     });
 });
 
-// app.post("/isAdmin", (req, res) => {
-//     database.isAdmin(req.body, (isAdmin) => {
-//         res.send(isAdmin);
-//     });
-// });
+
+
+//------------------------------- body object phai co email, confirmation_time, confirmation_status(Safe/Unsafe)
+app.post("/submitConfirmForm", (req, res) => {
+    database.submitConfirmForm(req.body, (isSuccessful) => {
+        res.send(isSuccessful);
+    });
+});
+
+
+//------------------------------- body object phai co email thoi duoc r
+app.post("/getConfirmStatus", (req, res) => {
+    database.getConfirmStatus(req.body, (obejct) => {
+        res.send(obejct);
+    });
+});
 
 app.post("/signups", (req, res) => {
     database.signup(req.body, (isSucessful) => {
