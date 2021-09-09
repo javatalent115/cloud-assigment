@@ -84,7 +84,7 @@ module.exports.confirmVacination = function (user, cb) {
 
 module.exports.getConfirmStatus = function (user, cb) {
     var db = new sqlite3.Database("test.db");
-    var query = "SELECT confirmation_time, confirmation_status UserInformation WHERE email ='" + user.email + "';";
+    var query = "SELECT confirmation_time, confirmation_status FROM UserInformation WHERE email ='" + user.email + "';";
     db.all(query, function (err, rows) {
         if (err) return cb(err);
         var data = {
