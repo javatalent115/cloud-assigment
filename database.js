@@ -25,7 +25,7 @@ module.exports.signup = function (userdata, cb) {
     var isSucessful = false;
     var db = new sqlite3.Database("test.db");
     var query =
-        "INSERT into UserInformation (email, password, username, gender, dob, phone_number, address, role)" +
+        "INSERT into UserInformation (email, password, username, gender, dob, phone_number, avatar, address, role)" +
         "VALUES ('" +
         userdata.email +
         "','" +
@@ -38,6 +38,8 @@ module.exports.signup = function (userdata, cb) {
         userdata.dob +
         "','" +
         userdata.phone +
+        "','" +
+        userdata.avatar +
         "','" +
         userdata.address +
         "','user'" +
