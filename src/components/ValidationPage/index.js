@@ -57,7 +57,7 @@ const ValidationPage = () => {
         const information = {
             email: localStorage.getItem("email"),
             status: "Unsafe",
-            date: today.getTime(),
+            date: tomorrow.getTime(),
         };
         axios.post("http://localhost:3000/submitConfirmForm", information, headers).then(
             (response) => {
