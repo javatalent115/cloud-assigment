@@ -15,7 +15,10 @@ import ValidationPage from "./components/ValidationPage";
 function App() {
     let accountState = localStorage.getItem("account");
     const [account, setAccount] = useState(JSON.parse(accountState));
-
+    const [avatar, setAvatar] = useState("");
+    const handleAvatar = (img) => {
+        setAvatar(img);
+    };
     useEffect(() => {
         console.log(localStorage.getItem("account"));
         if (localStorage.getItem("account") !== null) {
@@ -37,10 +40,11 @@ function App() {
         localStorage.setItem("account", false);
         setAccount(false);
     };
+    console.log(avatar);
     return (
         <Router>
             <div className="App">
-                <Navbar account={account} handleSignOut={handleSignOut} />
+                <Navbar account={account} handleSignOut={handleSignOut} avatar={avatar} />
                 <Route path="/" exact>
                     <Home></Home>
                 </Route>
@@ -51,7 +55,11 @@ function App() {
                     <SignUp handleSignUp={handleSignUp}></SignUp>
                 </Route>
                 <Route path="/signIn">
-                    <SignIn handleSignIn={handleSignIn}></SignIn>
+                    <SignIn
+                        handleSignIn={handleSignIn}
+                        setAvatar={setAvatar}
+                        handleAvatar={handleAvatar}
+                    ></SignIn>
                 </Route>
                 <Route path="/information">
                     <Information></Information>

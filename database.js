@@ -6,7 +6,7 @@ module.exports.is_valid_account = function (email, password, cb) {
         var obj = {
             email: "",
             role: "",
-            avatar: ""
+            avatar: "",
         };
         if (err) return cb(err);
         rows.forEach(function (row) {
@@ -84,12 +84,15 @@ module.exports.confirmVacination = function (user, cb) {
 
 module.exports.getConfirmStatus = function (user, cb) {
     var db = new sqlite3.Database("test.db");
-    var query = "SELECT confirmation_time, confirmation_status FROM UserInformation WHERE email ='" + user.email + "';";
+    var query =
+        "SELECT confirmation_time, confirmation_status FROM UserInformation WHERE email ='" +
+        user.email +
+        "';";
     db.all(query, function (err, rows) {
         if (err) return cb(err);
         var data = {
-            email: rows[0].confirmation_time,
-            password: rows[0].confirmation_status
+            date: rows[0].confirmation_time,
+            status: rows[0].confirmation_status,
         };
         db.close();
         cb(data);
@@ -100,14 +103,14 @@ module.exports.submitConfirmForm = function (user, cb) {
     var isSucessful = false;
     var db = new sqlite3.Database("test.db");
     var query =
-    "UPDATE UserInformation SET confirmation_time ='" +
-    user.confirmation_time +
-    "', confirmation_status = '" +
-    user.confirmation_status +
-    "' WHERE email ='" +
-    user.email +
-    "';";
-        
+        "UPDATE UserInformation SET confirmation_time ='" +
+        user.date +
+        "', confirmation_status = '" +
+        user.status +
+        "' WHERE email ='" +
+        user.email +
+        "';";
+
     db.run(query, function (err) {
         if (!err) isSucessful = true;
         else console.log(err);
@@ -115,7 +118,6 @@ module.exports.submitConfirmForm = function (user, cb) {
         cb(isSucessful);
     });
 };
-
 
 module.exports.dataList = function (user, cb) {
     var list = [];
@@ -138,7 +140,7 @@ module.exports.dataList = function (user, cb) {
                         secondshot: row.secondshot,
                         firstshotdate: row.firstshotdate,
                         secondshotdate: row.secondshotdate,
-                        confirmation_status: row.confirmation_status
+                        confirmation_status: row.confirmation_status,
                     };
                     list[index] = data;
                     index++;
@@ -164,7 +166,7 @@ module.exports.dataList = function (user, cb) {
                     secondshot: rows[0].secondshot,
                     firstshotdate: rows[0].firstshotdate,
                     secondshotdate: rows[0].secondshotdate,
-                    confirmation_status: rows[0].confirmation_status
+                    confirmation_status: rows[0].confirmation_status,
                 };
                 list[0] = data;
                 db.close();

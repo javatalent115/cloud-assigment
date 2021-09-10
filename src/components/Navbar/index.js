@@ -2,7 +2,7 @@ import React from "react";
 import { Wrapper, LeftNavItem, RightNavItem, RightNav, Content } from "./Navbar.styles";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-const Navbar = ({ account, handleSignOut }) => {
+const Navbar = ({ account, handleSignOut, avatar }) => {
     let item;
 
     const abc = () => {
@@ -10,6 +10,18 @@ const Navbar = ({ account, handleSignOut }) => {
         window.location.href = "/";
     };
     console.log(account);
+    let image;
+    if (localStorage.getItem("avatar") == "null") {
+        image = (
+            <img
+                src="https://static.thenounproject.com/png/3070444-200.png"
+                className="image"
+                alt=""
+            ></img>
+        );
+    } else {
+        image = <img src={localStorage.getItem("avatar")} className="image" alt=""></img>;
+    }
     if (account) {
         item = (
             <>
@@ -24,11 +36,7 @@ const Navbar = ({ account, handleSignOut }) => {
                     <RightNavItem>Validation</RightNavItem>
                 </Link>
                 <div className="account">
-                    <img
-                        src="https://static.thenounproject.com/png/3070444-200.png"
-                        className="image"
-                        alt=""
-                    ></img>
+                    {image}
                     <DropdownButton align="end" id="dropdown-menu-align-end" title="">
                         <li>
                             <RightNavItem onClick={abc}>Đăng xuất</RightNavItem>

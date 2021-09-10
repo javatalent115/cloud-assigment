@@ -6,12 +6,70 @@ import checkIcon from "../../check-icon.jpeg";
 import uncheckIcon from "../../uncheck-icon.jpeg";
 import { Row, Col, Button, Modal, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import axios from "axios";
 const ValidationPage = () => {
-    const [state, setState] = useState("uncheck");
+    const [state, setState] = useState();
     const [modalShow, setModalShow] = React.useState(false);
+    const [time, setTime] = useState();
     let content = "";
+    const headers = {
+        headers: { "Content-type": "application/json" },
+    };
+    async function fetchData() {
+        await axios
+            .post(
+                "http://localhost:3000/getConfirmStatus",
+                { email: localStorage.getItem("email") },
+                headers
+            )
+            .then(
+                (response) => {
+                    console.log(response);
+                    let today = new Date();
+
+                    if (response.data.status === "Unsafe") {
+                        if (today.getTime() >= response.data.date) {
+                            setState("uncheck");
+                        } else {
+                            setState("abc");
+                        }
+                    } else {
+                        if (today.getTime() < response.data.date) {
+                            setState("check");
+                        } else {
+                            setState("uncheck");
+                        }
+                    }
+
+                    // setTime(response.data.)
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
+
     const handleConfirmButton = () => {
-        setState("check");
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        const information = {
+            email: localStorage.getItem("email"),
+            status: "Unsafe",
+            date: today.getTime(),
+        };
+        axios.post("http://localhost:3000/submitConfirmForm", information, headers).then(
+            (response) => {
+                if (information.status === "Unsafe") {
+                    setState("abc");
+                } else setState("check");
+            },
+            (error) => {
+                console.log(error);
+                setState("");
+            }
+        );
     };
     if (state === "check") {
         content = (
@@ -24,20 +82,32 @@ const ValidationPage = () => {
                 </Row>
             </>
         );
-    } else {
+    } else if (state == "abc") {
         content = (
             <>
                 <Row>
                     <img src={uncheckIcon}></img>
                 </Row>
                 <Row>
-                    <h3>You are not allow to go outside until you validate this form</h3>
+                    <h3>You are not allow to go outside</h3>
+                </Row>
+            </>
+        );
+    } else if (state == "uncheck") {
+        content = (
+            <>
+                <Row>
+                    <img src={uncheckIcon}></img>
                 </Row>
                 <Row>
-                    <Button variant="primary" onClick={() => setModalShow(true)}>
-                        Validation Form
-                    </Button>
-
+                    <h3>Please submit the form!</h3>
+                </Row>
+                <Row>
+                    <>
+                        <Button variant="primary" onClick={() => setModalShow(true)}>
+                            Validation Form
+                        </Button>
+                    </>
                     <MyVerticallyCenteredModal
                         show={modalShow}
                         onHide={() => setModalShow(false)}
@@ -47,6 +117,9 @@ const ValidationPage = () => {
             </>
         );
     }
+    useEffect(() => {
+        fetchData();
+    }, []);
     return (
         <>
             <DashBoardWrapper>

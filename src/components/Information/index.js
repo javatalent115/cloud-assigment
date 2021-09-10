@@ -209,9 +209,7 @@ const Information = () => {
                                 <h5>{information.phoneNum}</h5>
                             </Item>
                         </Col>
-                    </Row>
-                    <Row className="row">
-                        <Col md={4} xs={12}>
+                        <Col>
                             <Item>
                                 <h6>Địa chỉ</h6>
                                 <h5>{information.address}</h5>
@@ -247,9 +245,9 @@ const Information = () => {
                                 <th>Date of birth</th>
                                 <th>Phone number</th>
                                 <th>First Dose</th>
-                                <th>Date</th>
+                                <th>1st Date</th>
                                 <th>Second Dose</th>
-                                <th>Date</th>
+                                <th>2nd Date</th>
                             </tr>
                         </thead>
                         <tbody>

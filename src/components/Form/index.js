@@ -14,6 +14,7 @@ const Forms = ({ handleSignUp }) => {
     const [phoneNum, setPhoneNum] = useState("");
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
+    const [avatar, setAvatar] = useState("");
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -40,13 +41,13 @@ const Forms = ({ handleSignUp }) => {
                 phone: phoneNum,
                 address: address,
                 password: password,
+                avatar: avatar,
             };
             const headers = {
                 headers: { "Content-type": "application/json" },
             };
             axios.post("http://localhost:3000/signups", information, headers).then(
                 (response) => {
-                    console.log(response);
                     if (response.data !== false) {
                         window.location.href = "/signIn";
                     } else {
@@ -147,6 +148,14 @@ const Forms = ({ handleSignUp }) => {
                             required
                             placeholder="1234 Main St"
                             onChange={(e) => setAddress(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="">
+                        <Form.Label>Avatar link</Form.Label>
+                        <Form.Control
+                            required
+                            placeholder="Avatar source"
+                            onChange={(e) => setAvatar(e.target.value)}
                         />
                     </Form.Group>
 

@@ -4,7 +4,7 @@ import { DashBoardContent, DashBoardWrapper } from "../SignUp/SignUp.styles";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SignInForm from "../SignInForm";
 
-const SignIn = ({ handleSignIn }) => {
+const SignIn = ({ handleSignIn, setAvatar, handleAvatar }) => {
     return (
         <>
             <DashBoardWrapper>
@@ -18,7 +18,11 @@ const SignIn = ({ handleSignIn }) => {
                     </div>
                 </DashBoardContent>
             </DashBoardWrapper>
-            <SignInForm handleSignIn={handleSignIn} />
+            <SignInForm
+                handleSignIn={handleSignIn}
+                setAvatar={setAvatar}
+                handleAvatar={handleAvatar}
+            />
         </>
     );
 };

@@ -27,15 +27,12 @@ app.post("/confirmVacination", (req, res) => {
     });
 });
 
-
-
 //------------------------------- body object phai co email, confirmation_time, confirmation_status(Safe/Unsafe)
 app.post("/submitConfirmForm", (req, res) => {
     database.submitConfirmForm(req.body, (isSuccessful) => {
         res.send(isSuccessful);
     });
 });
-
 
 //------------------------------- body object phai co email thoi duoc r
 app.post("/getConfirmStatus", (req, res) => {
@@ -45,6 +42,7 @@ app.post("/getConfirmStatus", (req, res) => {
 });
 
 app.post("/signups", (req, res) => {
+    console.log(req.body.avatar);
     database.signup(req.body, (isSucessful) => {
         console.log(isSucessful);
         res.send(isSucessful);

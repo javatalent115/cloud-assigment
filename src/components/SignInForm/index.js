@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "./custom.css";
-const SignInForm = ({ handleSignIn }) => {
+const SignInForm = ({ handleSignIn, setAvatar, handleAvatar }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [inValidMessage, setInvalidMessage] = useState("");
@@ -40,6 +40,9 @@ const SignInForm = ({ handleSignIn }) => {
                     if (response.data.email.length > 0) {
                         localStorage.setItem("roles", response.data.role);
                         localStorage.setItem("email", response.data.email);
+                        localStorage.setItem("avatar", response.data.avatar);
+                        // setAvatar(response.data.avatar);
+                        // handleAvatar(response.data.avatar);
                         handleSignIn();
                         window.location.href = "/home";
                     } else {
