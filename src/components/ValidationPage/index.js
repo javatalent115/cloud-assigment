@@ -51,12 +51,12 @@ const ValidationPage = () => {
             if (Object.keys(radio).length >= 6) {
                 let temp;
                 if (
-                    radio[0] === "yes" &&
-                    radio[1] === "yes" &&
-                    radio[2] === "yes" &&
-                    radio[3] === "yes" &&
-                    radio[4] === "yes" &&
-                    radio[5] === "yes"
+                    radio[0] === "no" &&
+                    radio[1] === "no" &&
+                    radio[2] === "no" &&
+                    radio[3] === "no" &&
+                    radio[4] === "no" &&
+                    radio[5] === "no"
                 ) {
                     temp = "Safe";
                 } else {
