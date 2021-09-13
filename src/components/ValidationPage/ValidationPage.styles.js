@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     margin-top: 20px;
-    min-height: 45vh;
+    min-height: calc(100vh - 300px - 78px);
+
     display: flex;
 `;
 export const Content = styled.div`

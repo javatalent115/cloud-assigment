@@ -51,20 +51,20 @@ function App() {
                 <Route path="/home" exact>
                     <Home></Home>
                 </Route>
-                <Route path="/signUp">
+                <Route path="/signUp" exact>
                     <SignUp handleSignUp={handleSignUp}></SignUp>
                 </Route>
-                <Route path="/signIn">
+                <Route path="/signIn" exact>
                     <SignIn
                         handleSignIn={handleSignIn}
                         setAvatar={setAvatar}
                         handleAvatar={handleAvatar}
                     ></SignIn>
                 </Route>
-                <Route path="/information">
+                <Route path="/information" exact>
                     <Information></Information>
                 </Route>
-                <Route path="/validationPage">
+                <Route path="/validationPage" exact>
                     <ValidationPage></ValidationPage>
                 </Route>
                 <Footer />
