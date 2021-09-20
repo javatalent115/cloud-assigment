@@ -1,3 +1,12 @@
+The website helps the people to educate the current situation of the Covid-19 also users can able to update their vaccine status. which is helpful to the officials to identify the vaccinated people. 
+
+GitHub repo: https://github.com/javatalent115/cloud-assigment.git
+Deployed Link (method 1): https://dev.d1tnrpnvbr0gdb.amplifyapp.com/?fbclid=IwAR2mA7eycTlFTX4P8D9rsc3W_UMnWjpQWTo7pKiJYvm6og6N1ovaeOC0PKI
+Deployed Link (method 2): http://cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/?fbclid=IwAR0vqW-jwdc9huzeTEsQu1uDmk8005i2SgIQm-7QPxIpr-4TXKaTVZIFLNw
+API URL: https://kyjvjjwypvcphl3g2eaqiczgiy.appsync-api.ap-northeast-1.amazonaws.com/graphql
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
