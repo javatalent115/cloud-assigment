@@ -74,7 +74,7 @@ export const Chart = () => {
     return (
         <Wrapper>
             <Content>
-                <h5>Dữ liệu tiêm theo ngày</h5>
+                <h5>Daily Vaccine Injection</h5>
                 <CanvasJSChart containerProps={containerProps} options={lineChartData} />
             </Content>
         </Wrapper>

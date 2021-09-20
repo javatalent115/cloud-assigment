@@ -69,7 +69,7 @@ const Forms = ({ handleSignUp }) => {
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formGridName">
-                            <Form.Label>Họ và Tên</Form.Label>
+                            <Form.Label>Full Name</Form.Label>
                             <Form.Control
                                 required
                                 type="text"
@@ -81,7 +81,7 @@ const Forms = ({ handleSignUp }) => {
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridPassword">
-                            <Form.Label>Giới tính</Form.Label>
+                            <Form.Label>Gender</Form.Label>
                             <Form.Select
                                 aria-label="Floating label select example"
                                 defaultValue="Gender"
@@ -92,14 +92,14 @@ const Forms = ({ handleSignUp }) => {
                                     Gender
                                 </option>
                                 <option value="Male" selected>
-                                    Nam
+                                    Male
                                 </option>
-                                <option value="Female">Nũ</option>
+                                <option value="Female">Female</option>
                                 <option value="Other">Other</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group as={Col} controlId="dob">
-                            <Form.Label>Ngày sinh</Form.Label>
+                            <Form.Label>Date of birth</Form.Label>
                             <Form.Control
                                 required
                                 type="date"
@@ -132,7 +132,7 @@ const Forms = ({ handleSignUp }) => {
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col}>
-                            <Form.Label>Số điện thoại</Form.Label>
+                            <Form.Label>Phone number</Form.Label>
                             <Form.Control
                                 required
                                 type="number"

@@ -148,7 +148,7 @@ const ValidationPage = () => {
                     <h3>Form validation</h3>
                     <div>
                         <div>
-                            <Link to="/">Trang chủ</Link>
+                            <Link to="/">Home</Link>
                         </div>
                         <span>Validation</span>
                     </div>

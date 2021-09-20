@@ -26,11 +26,11 @@ const Navbar = ({ account, handleSignOut, avatar }) => {
         item = (
             <>
                 <Link to="/home">
-                    <RightNavItem>Trang chủ</RightNavItem>
+                    <RightNavItem>Home Page</RightNavItem>
                 </Link>
 
                 <Link to="/information">
-                    <RightNavItem>Tra cứu</RightNavItem>
+                    <RightNavItem>Infomation look-up</RightNavItem>
                 </Link>
                 <Link to="/validationPage">
                     <RightNavItem>Validation</RightNavItem>
@@ -39,7 +39,7 @@ const Navbar = ({ account, handleSignOut, avatar }) => {
                     {image}
                     <DropdownButton align="end" id="dropdown-menu-align-end" title="">
                         <li>
-                            <RightNavItem onClick={abc}>Đăng xuất</RightNavItem>
+                            <RightNavItem onClick={abc}>Sign-out</RightNavItem>
                         </li>
                     </DropdownButton>
                 </div>
@@ -49,13 +49,13 @@ const Navbar = ({ account, handleSignOut, avatar }) => {
         item = (
             <>
                 <Link to="/home">
-                    <RightNavItem>Trang chủ</RightNavItem>
+                    <RightNavItem>Home Page</RightNavItem>
                 </Link>
                 <Link to="/signUp">
-                    <RightNavItem>Đăng ký tiêm</RightNavItem>
+                    <RightNavItem>Registration</RightNavItem>
                 </Link>
                 <Link to="/signIn">
-                    <RightNavItem>Đăng nhập</RightNavItem>
+                    <RightNavItem>Sign In</RightNavItem>
                 </Link>
             </>
         );

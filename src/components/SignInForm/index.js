@@ -88,7 +88,7 @@ const SignInForm = ({ handleSignIn, setAvatar, handleAvatar }) => {
                         />
                     </Form.Group>
                     <div className="invalid-message">{inValidMessage}</div>
-                    <h6>Quên mật khẩu?</h6>
+                    <h6>Forgot password?</h6>
                     <Button variant="primary" style={{ width: "100%" }} onClick={handleSubmit}>
                         Sign In
                     </Button>

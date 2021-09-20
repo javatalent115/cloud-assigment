@@ -6,7 +6,7 @@ const SignUpDashboard = () => {
         <Wrapper>
             <Content>
                 <Item>
-                    <h2>Thông tin cá nhân</h2>
+                    <h2>Personal information</h2>
                 </Item>
                 {/* <Item>
                     <p>Bước 2</p>

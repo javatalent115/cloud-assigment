@@ -12,7 +12,7 @@ const SignIn = ({ handleSignIn, setAvatar, handleAvatar }) => {
                     <h3>Sign Up</h3>
                     <div>
                         <div>
-                            <Link to="/">Trang chủ</Link>
+                            <Link to="/">Home</Link>
                         </div>
                         <span>Sign Up</span>
                     </div>

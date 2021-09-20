@@ -29,8 +29,8 @@ const Information = () => {
     const [role, setRole] = useState(roles);
     const [progress, setProgress] = useState(0);
     const [information, setInformation] = useState({});
-    const [conclude, setConclude] = useState("Chưa tiêm");
-    const [buttonText, setButtonText] = useState("Xác nhận đã tiêm mũi 1");
+    const [conclude, setConclude] = useState("Not injection");
+    const [buttonText, setButtonText] = useState("First dose confirmation");
     const [tableInfo, setTableInfo] = useState([]);
     let itemRender;
     let buttonRender;
@@ -57,11 +57,11 @@ const Information = () => {
                         if (data.firstshot !== null && data.firstshot !== "") {
                             if (data.secondshot !== null && data.secondshot !== "") {
                                 setProgress(100);
-                                setConclude("Đã tiêm 2 mũi");
+                                setConclude("Inject 2 dose");
                             } else {
                                 setProgress(50);
-                                setButtonText("Xác nhận đã tiêm mũi 2");
-                                setConclude("Đã tiêm 1 mũi");
+                                setButtonText("Second dose confirmation");
+                                setConclude("Inject 1 dose");
                             }
                         }
 
@@ -124,11 +124,11 @@ const Information = () => {
 
             if (progress === 0) {
                 setProgress(50);
-                setConclude("Bạn đã tiêm 1 liều");
-                setButtonText("Xác nhận đã tiêm mũi 2");
+                setConclude("You have inject 1 dose");
+                setButtonText("Second dose confirmation");
             } else {
                 setProgress(100);
-                setConclude("Bạn đã tiêm đủ");
+                setConclude("You have complete injection");
             }
             setModalShow(false);
             console.log(vaccineName);
@@ -173,19 +173,19 @@ const Information = () => {
                     </Row>
                     <Row className="row">
                         <Col className="text-center">
-                            <h2>Chứng nhận tiêm chủng Covid-19</h2>
+                            <h2>Covid 19 Injection Certificate</h2>
                         </Col>
                     </Row>
                     <Row className="row">
                         <Col>
                             <Item>
-                                <h6>Họ và tên</h6>
+                                <h6>Full Name</h6>
                                 <h5>{information.name}</h5>
                             </Item>
                         </Col>
                         <Col>
                             <Item>
-                                <h6>Ngày sinh</h6>
+                                <h6>Date of birth</h6>
                                 <h5>{information.dob}</h5>
                             </Item>
                         </Col>
@@ -205,13 +205,13 @@ const Information = () => {
                         </Col>
                         <Col>
                             <Item>
-                                <h6>Số điện thoại</h6>
+                                <h6>Phone number</h6>
                                 <h5>{information.phoneNum}</h5>
                             </Item>
                         </Col>
                         <Col>
                             <Item>
-                                <h6>Địa chỉ</h6>
+                                <h6>Address</h6>
                                 <h5>{information.address}</h5>
                             </Item>
                         </Col>
@@ -219,7 +219,7 @@ const Information = () => {
                     <Row className="row">
                         <Col md={4} xs={12}>
                             <Item>
-                                <h6>Kết luận</h6>
+                                <h6>Conclude</h6>
                                 <h5>{conclude}</h5>
                             </Item>
                         </Col>
@@ -275,7 +275,7 @@ const Information = () => {
                     <h3>Vaccinated Information</h3>
                     <div>
                         <div>
-                            <Link to="/">Trang chủ</Link>
+                            <Link to="/">Home</Link>
                         </div>
                         <span>Information</span>
                     </div>
@@ -299,12 +299,12 @@ function MyVerticallyCenteredModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Nhập loại thuốc và ngày mà bạn đã tiêm
+                    Enter vaccine type and injection date
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form.Group as={Col} controlId="formGridName">
-                    <Form.Label>Tên thuốc</Form.Label>
+                    <Form.Label>Vaccine name</Form.Label>
                     {/* <Form.Control
                         type="text"
                         placeholder="Vaccine name"
@@ -327,7 +327,7 @@ function MyVerticallyCenteredModal(props) {
                     </Form.Select>
                 </Form.Group>
                 <Form.Group as={Col} controlId="dob">
-                    <Form.Label>Ngày chích</Form.Label>
+                    <Form.Label>Injection date</Form.Label>
                     <Form.Control
                         type="date"
                         placeholder=""

@@ -9,12 +9,12 @@ const SignUp = ({ handleSignUp }) => {
         <div className="a">
             <DashBoardWrapper>
                 <DashBoardContent>
-                    <h3>Đăng ký tiêm cá nhân</h3>
+                    <h3>Personal Registration</h3>
                     <div>
                         <div>
-                            <Link to="/">Trang chủ</Link>
+                            <Link to="/">Home</Link>
                         </div>
-                        <span>Đăng ký tiêm</span>
+                        <span>Registration</span>
                     </div>
                 </DashBoardContent>
             </DashBoardWrapper>

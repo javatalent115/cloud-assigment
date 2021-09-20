@@ -24,15 +24,15 @@ const DashBoard = () => {
                 <Item>
                     <img src="https://tiemchungcovid19.gov.vn/assets/portal/img/ic_register_people.svg"></img>
                     <div>
-                        <h6>Đối tượng đăng ký tiêm</h6>
+                        <h6>Registrations Injection Object</h6>
                         <span>5,873,546</span>
-                        <small>(lượt)</small>
+                        <small>(turns)</small>
                     </div>
                 </Item>
                 <Item>
                     <img src="https://tiemchungcovid19.gov.vn/assets/portal/img/ic_injection.svg"></img>
                     <div>
-                        <h6>Số mũi tiêm hôm qua</h6>
+                        <h6>Yesterday Injection</h6>
                         <span>
                             {numberFormat(
                                 vaccineData[
@@ -45,13 +45,13 @@ const DashBoard = () => {
                                     ]
                             )}
                         </span>
-                        <small>(mũi)</small>
+                        <small>(injections)</small>
                     </div>
                 </Item>
                 <Item>
                     <img src="https://tiemchungcovid19.gov.vn/assets/portal/img/ic_injected_people.svg"></img>
                     <div>
-                        <h6>Số mũi đã tiêm toàn quốc</h6>
+                        <h6>Nationwide Injection</h6>
                         <span>
                             {" "}
                             {numberFormat(
@@ -60,7 +60,7 @@ const DashBoard = () => {
                                 ]
                             )}
                         </span>
-                        <small>(mũi)</small>
+                        <small>(injections)</small>
                     </div>
                 </Item>
             </Content>
