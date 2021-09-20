@@ -7,7 +7,7 @@ const Navbar = ({ account, handleSignOut, avatar }) => {
 
     const abc = () => {
         handleSignOut();
-        window.location.href = "/";
+        window.location.href = "http://cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/home";
     };
     console.log(account);
     let image;

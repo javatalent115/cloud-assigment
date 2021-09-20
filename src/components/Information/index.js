@@ -45,7 +45,7 @@ const Information = () => {
     async function fetchData() {
         axios
             .post(
-                "http://localhost:3000/getUserData",
+                "http://Cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/getUserData",
                 { email: localStorage.getItem("email"), role: localStorage.getItem("roles") },
                 headers
             )
@@ -113,7 +113,7 @@ const Information = () => {
                     date: vaccineDate,
                 };
             }
-            axios.post("http://localhost:3000/confirmVacination", vaccineInfo, headers).then(
+            axios.post("http://Cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/confirmVacination", vaccineInfo, headers).then(
                 (response) => {
                     console.log(response);
                 },

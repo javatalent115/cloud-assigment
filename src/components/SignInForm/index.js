@@ -19,7 +19,7 @@ const SignInForm = ({ handleSignIn, setAvatar, handleAvatar }) => {
             const headers = {
                 headers: { "Content-type": "application/json" },
             };
-            axios.post("http://localhost:3000/validateAccount", information, headers).then(
+            axios.post("http://Cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/validateAccount", information, headers).then(
                 (response) => {
                     if (response.data.email.length > 0) {
                         localStorage.setItem("roles", response.data.role);
@@ -28,7 +28,7 @@ const SignInForm = ({ handleSignIn, setAvatar, handleAvatar }) => {
                         // setAvatar(response.data.avatar);
                         // handleAvatar(response.data.avatar);
                         handleSignIn();
-                        window.location.href = "/home";
+                        window.location.href = "http://Cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/";
                     } else {
                         setInvalidMessage("Wrong username or password!!");
                     }

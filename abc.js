@@ -1,13 +1,13 @@
-const database = require("./database");
-const express = require("express");
-const path = require("path");
+import * as database from './database.js';
+import express from "express";
+import path from "path";
+import body_parser from "body-parser";
 const app = express();
-const body_parser = require("body-parser");
 
-const port = 3000;
+var port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "build")));
-
+app.use(express.static('./build/'));
+const __dirname = path.resolve();
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: true }));
 

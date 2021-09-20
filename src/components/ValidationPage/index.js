@@ -19,7 +19,7 @@ const ValidationPage = () => {
     async function fetchData() {
         await axios
             .post(
-                "http://localhost:3000/getConfirmStatus",
+                "http://Cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/getConfirmStatus",
                 { email: localStorage.getItem("email") },
                 headers
             )
@@ -72,7 +72,7 @@ const ValidationPage = () => {
                     date: tomorrow.getTime(),
                 };
 
-                axios.post("http://localhost:3000/submitConfirmForm", information, headers).then(
+                axios.post("http://Cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/submitConfirmForm", information, headers).then(
                     (response) => {
                         if (information.status === "Unsafe") {
                             setState("notValid");

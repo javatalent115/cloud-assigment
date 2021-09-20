@@ -1,6 +1,6 @@
-const sqlite3 = require("sqlite3").verbose();
-
-module.exports.is_valid_account = function (email, password, cb) {
+import sqlite3 from "sqlite3";
+sqlite3.verbose();
+export function is_valid_account (email, password, cb) {
     var db = new sqlite3.Database("test.db");
     db.all("SELECT * FROM UserInformation", function (err, rows) {
         var obj = {
@@ -19,9 +19,9 @@ module.exports.is_valid_account = function (email, password, cb) {
         db.close();
         cb(obj);
     });
-};
+}
 
-module.exports.signup = function (userdata, cb) {
+export function signup (userdata, cb) {
     var isSucessful = false;
     var db = new sqlite3.Database("test.db");
     var query =
@@ -50,9 +50,9 @@ module.exports.signup = function (userdata, cb) {
         db.close();
         cb(isSucessful);
     });
-};
+}
 
-module.exports.confirmVacination = function (user, cb) {
+export function confirmVacination (user, cb) {
     var isSucessful = false;
     var db = new sqlite3.Database("test.db");
     var query = "";
@@ -80,9 +80,9 @@ module.exports.confirmVacination = function (user, cb) {
         db.close();
         cb(isSucessful);
     });
-};
+}
 
-module.exports.getConfirmStatus = function (user, cb) {
+export function getConfirmStatus (user, cb) {
     var db = new sqlite3.Database("test.db");
     var query =
         "SELECT confirmation_time, confirmation_status FROM UserInformation WHERE email ='" +
@@ -97,9 +97,9 @@ module.exports.getConfirmStatus = function (user, cb) {
         db.close();
         cb(data);
     });
-};
+}
 
-module.exports.submitConfirmForm = function (user, cb) {
+export function submitConfirmForm (user, cb) {
     var isSucessful = false;
     var db = new sqlite3.Database("test.db");
     var query =
@@ -117,9 +117,9 @@ module.exports.submitConfirmForm = function (user, cb) {
         db.close();
         cb(isSucessful);
     });
-};
+}
 
-module.exports.dataList = function (user, cb) {
+export function dataList (user, cb) {
     var list = [];
     var db = new sqlite3.Database("test.db");
     if (user.role === "admin") {
@@ -174,4 +174,4 @@ module.exports.dataList = function (user, cb) {
             }
         );
     }
-};
+}

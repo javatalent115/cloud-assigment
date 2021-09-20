@@ -46,7 +46,7 @@ const Forms = ({ handleSignUp }) => {
             const headers = {
                 headers: { "Content-type": "application/json" },
             };
-            axios.post("http://localhost:3000/signups", information, headers).then(
+            axios.post("http://Cloud-env.eba-8hk2mpj3.us-west-2.elasticbeanstalk.com/signups", information, headers).then(
                 (response) => {
                     if (response.data !== false) {
                         window.location.href = "/signIn";
